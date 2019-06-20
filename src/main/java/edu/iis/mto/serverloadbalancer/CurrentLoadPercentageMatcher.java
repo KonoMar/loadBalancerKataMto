@@ -12,6 +12,17 @@ public class CurrentLoadPercentageMatcher extends TypeSafeMatcher<Server> {
     }
 
     @Override
+    public void describeTo(Description description) {
+        description.appendText("a server with load percentage of ").appendValue(expectedLoadPercentage);
+    }
+
+    @Override
+    protected void describeMismatchSafely(Server item, Description description) {
+        description.appendText("a server with load percentage of ").appendValue(item.currentLoadPercentage);
+
+    }
+
+    @Override
     protected boolean matchesSafely(Server server) {
         return doubleAreEqual(expectedLoadPercentage, server.currentLoadPercentage);
 
@@ -22,10 +33,7 @@ public class CurrentLoadPercentageMatcher extends TypeSafeMatcher<Server> {
                 || Math.abs(d1 - d2) < 0.01d;
     }
 
-    @Override
-    public void describeTo(Description description) {
-        description.appendText("a server with load percentage of ").appendValue(expectedLoadPercentage);
-    }
+
 
     public static Matcher<? super Server> hasCurrentLoadOf(double expectedLoadPercentage) {
         return new CurrentLoadPercentageMatcher(expectedLoadPercentage);
