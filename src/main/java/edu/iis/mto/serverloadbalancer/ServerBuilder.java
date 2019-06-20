@@ -11,4 +11,9 @@ public class ServerBuilder {
     public Server build() {
         return new Server();
     }
+
+
+    public static ServerBuilder server() {
+        return new ServerBuilder();
+    }
 }
