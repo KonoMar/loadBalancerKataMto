@@ -24,6 +24,6 @@ public class Server {
     }
 
     public int countVms() {
-        return vms.size() ;
+        return vms.size();
     }
 }
